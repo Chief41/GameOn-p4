@@ -137,14 +137,27 @@ signupBtn.addEventListener("click", () => {
 
   // Validation de la quantité de participation
   function quantityValidator() {
-    if (quantity.value.trim() === "" || quantity.value < 1) {
+    const quantityField = document.getElementById("quantity");
+    const quantityValue = quantityField.value.trim();
+  
+    // Utiliser une expression régulière pour vérifier que la valeur ne contient que des chiffres
+    const onlyNumbersRegex = /^[0-9]+$/;
+  
+    if (!onlyNumbersRegex.test(quantityValue)) {
       document.getElementById("quantityError").textContent =
-        "Veuillez entrer une quantité valide.";
-        document.getElementById("quantityError").style.color = "red";
-        document.getElementById("quantity").style.borderColor = "red"
+        "Veuillez entrer un nombre valide.";
+      document.getElementById("quantityError").style.color = "red";
+      quantityField.style.borderColor = "red";
+      return false;
+    } else if (parseInt(quantityValue, 10) < 1) {
+      document.getElementById("quantityError").textContent =
+        "Veuillez entrer une quantité valide supérieure à zéro.";
+      document.getElementById("quantityError").style.color = "red";
+      quantityField.style.borderColor = "red";
       return false;
     } else {
       document.getElementById("quantityError").textContent = "";
+      quantityField.style.borderColor = ""; // Réinitialiser la couleur du bord
       return true;
     }
   }
@@ -278,7 +291,7 @@ function validate() {
     formular.style.display = "block"; // Afficher à nouveau le formulaire si nécessaire
     // Rediriger l'utilisateur vers une autre page de votre site web
    
-    window.location.href = "http://127.0.0.1:5500/GameOn-website-FR-master/starterOnly/index.html"
+    window.location.href = "http://127.0.0.1:5501/starterOnly/index.html"
   });
 }
 
