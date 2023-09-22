@@ -277,6 +277,7 @@ function validate() {
     parentOfNewElement.remove();
     formular.style.display = "block"; // Afficher à nouveau le formulaire si nécessaire
     // Rediriger l'utilisateur vers une autre page de votre site web
+   
     window.location.href = "http://127.0.0.1:5500/GameOn-website-FR-master/starterOnly/index.html"
   });
 }
@@ -300,6 +301,8 @@ function formulaireValidator() {
     validate();
   }
 }
+
+
  
 
 
